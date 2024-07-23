@@ -43,6 +43,13 @@ export const ProfileContent = styled.div`
             ${mixins.fonts.link};
 
             color: ${props => props.theme["blue"]};
+
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                text-underline-offset: 0.25rem;
+            }
         }
     }
     

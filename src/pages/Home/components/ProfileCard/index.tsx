@@ -1,5 +1,7 @@
 import {InfoTag, ProfileCardContainer, ProfileContent, ProfileImage} from "./styles.ts";
 
+import {Link} from "react-router-dom";
+
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {findIconDefinition, IconDefinition, IconLookup} from "@fortawesome/fontawesome-svg-core";
 import "../../../../libs/fontAwesome.ts";
@@ -27,10 +29,10 @@ export function ProfileCard() {
             <ProfileContent>
                 <header>
                     <h3>Cameron Williamson</h3>
-                    <a>
+                    <Link to={"https://github.com"} target={"_blank"}>
                         <span>GITHUB</span>
                         <FontAwesomeIcon icon={arrowUpRightFromSquareIconDefinition} />
-                    </a>
+                    </Link>
                 </header>
                 <p>Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat pulvinar vel mass.</p>
                 <div>
