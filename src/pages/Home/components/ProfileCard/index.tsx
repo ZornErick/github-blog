@@ -5,9 +5,8 @@ import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {findIconDefinition, IconDefinition, IconLookup} from "@fortawesome/fontawesome-svg-core";
 import "../../../../libs/fontAwesome.ts";
-
-import {useEffect, useState} from "react";
-import {api} from "../../../../libs/axios.ts";
+import {useContextSelector} from "use-context-selector";
+import {IssuesContext} from "../../../../contexts/IssuesContext.tsx";
 
 const arrowUpRightFromSquareLookup: IconLookup = { prefix: 'fas', iconName: 'arrow-up-right-from-square' };
 const arrowUpRightFromSquareIconDefinition: IconDefinition = findIconDefinition(arrowUpRightFromSquareLookup);
@@ -21,32 +20,11 @@ const buildingIconDefinition: IconDefinition = findIconDefinition(buildingLookup
 const userGroupLookup: IconLookup = { prefix: 'fas', iconName: 'user-group' };
 const userGroupIconDefinition: IconDefinition = findIconDefinition(userGroupLookup);
 
-interface IUser {
-    login: string;
-    avatar_url: string;
-    html_url: string;
-    name: string;
-    company: string;
-    bio: string;
-    followers: number;
-}
 
 export function ProfileCard() {
-    const [user, setUser] = useState<IUser>();
-
-    useEffect(() => {
-        api.get("/users/ZornErick").then((response) => {
-            setUser({
-                login: response.data.login,
-                avatar_url: response.data.avatar_url,
-                html_url: response.data.html_url,
-                name: response.data.name,
-                company: response.data.company,
-                bio: response.data.bio,
-                followers: response.data.followers
-            });
-        })
-    }, [])
+    const user = useContextSelector(IssuesContext, (context) => {
+        return context.user;
+    })
 
     return (
         <ProfileCardContainer>

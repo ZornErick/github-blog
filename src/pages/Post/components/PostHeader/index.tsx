@@ -4,6 +4,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {findIconDefinition, IconDefinition, IconLookup} from "@fortawesome/fontawesome-svg-core";
 import "../../../../libs/fontAwesome.ts";
 import {Link} from "react-router-dom";
+import {IIssue} from "../../../../contexts/IssuesContext.tsx";
+import {formatDistanceToNow} from "date-fns";
+import {ptBR} from "date-fns/locale";
 
 const arrowUpRightFromSquareLookup: IconLookup = { prefix: 'fas', iconName: 'arrow-up-right-from-square' };
 const arrowUpRightFromSquareIconDefinition: IconDefinition = findIconDefinition(arrowUpRightFromSquareLookup);
@@ -20,7 +23,17 @@ const calendarDayDefinition: IconDefinition = findIconDefinition(calendarDayLook
 const commentLookup: IconLookup = { prefix: 'fas', iconName: 'comment' };
 const commentDefinition: IconDefinition = findIconDefinition(commentLookup);
 
-export function PostHeader() {
+interface PostHeaderProps {
+    userLogin: string;
+    issue: IIssue;
+}
+
+export function PostHeader({ userLogin, issue }: PostHeaderProps) {
+    const formattedDate = formatDistanceToNow(new Date(issue.created_at), {
+        locale: ptBR,
+        addSuffix: true
+    });
+
     return (
         <PostHeaderContainer>
             <PostHeaderLinks>
@@ -28,25 +41,25 @@ export function PostHeader() {
                     <FontAwesomeIcon icon={chevronLeftLookupIconDefinition} />
                     <span>VOLTAR</span>
                 </Link>
-                <Link to={"#"} target={"_blank"}>
+                <Link to={issue.html_url} target={"_blank"}>
                     <span>VER NO GITHUB</span>
                     <FontAwesomeIcon icon={arrowUpRightFromSquareIconDefinition} />
                 </Link>
             </PostHeaderLinks>
             <PostHeaderContent>
-                <h3>JavaScript data types an data structures</h3>
+                <h3>{issue.title}</h3>
                 <div>
                     <InfoTag>
                         <FontAwesomeIcon icon={githubIconDefinition} />
-                        <span>cameronwll</span>
+                        <span>{userLogin}</span>
                     </InfoTag>
                     <InfoTag>
                         <FontAwesomeIcon icon={calendarDayDefinition} />
-                        <span>Há 1 dia</span>
+                        <span>{formattedDate}</span>
                     </InfoTag>
                     <InfoTag>
                         <FontAwesomeIcon icon={commentDefinition} />
-                        <span>5 comentários</span>
+                        <span>{issue.comments} {`${issue.comments > 1 ? 'comentários' : 'comentário'}`}</span>
                     </InfoTag>
                 </div>
             </PostHeaderContent>

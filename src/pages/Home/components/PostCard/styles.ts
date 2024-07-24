@@ -41,6 +41,10 @@ export const PostCardContainer = styled.div`
             ${mixins.fonts.textS};
 
             color: ${props => props.theme["base-span"]};
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-wrap: nowrap;
         }
     }
 

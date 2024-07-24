@@ -4,6 +4,7 @@ import {formatDistanceToNow} from "date-fns";
 
 import {ptBR} from "date-fns/locale";
 import {useNavigate} from "react-router-dom";
+import Markdown from "react-markdown";
 
 interface PostCardProps {
     number: number;
@@ -30,7 +31,7 @@ export function PostCard(props: PostCardProps) {
                 <h3>{props.title}</h3>
                 <span>{formattedDate}</span>
             </header>
-            <p>{props.body}</p>
+            <p><Markdown>{props.body}</Markdown></p>
         </PostCardContainer>
     );
 }
