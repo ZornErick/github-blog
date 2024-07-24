@@ -20,11 +20,18 @@ export const ProfileCardContainer = styled.div`
 `
 
 export const ProfileImage = styled.div`
-    border: none;
-    border-radius: 8px;
+    > img {
+        width: 148px;
+        height: 148px;
+
+        border: none;
+        border-radius: 8px;
+    }
 `
 
 export const ProfileContent = styled.div`
+    width: 100%;
+    
     > header {
         display: flex;
         justify-content: space-between;

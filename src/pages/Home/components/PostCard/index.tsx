@@ -1,13 +1,36 @@
 import {PostCardContainer} from "./styles.ts";
 
-export function PostCard() {
+import {formatDistanceToNow} from "date-fns";
+
+import {ptBR} from "date-fns/locale";
+import {useNavigate} from "react-router-dom";
+
+interface PostCardProps {
+    number: number;
+    title: string;
+    body: string;
+    created_at: string;
+}
+
+export function PostCard(props: PostCardProps) {
+    const navigate = useNavigate();
+
+    const formattedDate = formatDistanceToNow(new Date(props.created_at), {
+        locale: ptBR,
+        addSuffix: true
+    });
+
+    function goToPost() {
+        navigate(`/post/${props.number}`);
+    }
+
     return (
-        <PostCardContainer>
+        <PostCardContainer onClick={goToPost}>
             <header>
-                <h3>JavaScript data types and data structures</h3>
-                <span>Há 1 dia</span>
+                <h3>{props.title}</h3>
+                <span>{formattedDate}</span>
             </header>
-            <p>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in...</p>
+            <p>{props.body}</p>
         </PostCardContainer>
     );
 }

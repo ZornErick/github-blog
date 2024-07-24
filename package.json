@@ -14,12 +14,18 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@hookform/resolvers": "^3.9.0",
     "axios": "^1.7.2",
+    "date-fns": "^3.6.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.1",
+    "react-markdown": "^9.0.1",
     "react-router-dom": "^6.24.1",
-    "styled-components": "^6.1.11"
+    "scheduler": "^0.23.2",
+    "styled-components": "^6.1.11",
+    "use-context-selector": "^2.0.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

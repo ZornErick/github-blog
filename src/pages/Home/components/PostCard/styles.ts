@@ -30,6 +30,9 @@ export const PostCardContainer = styled.div`
             ${mixins.fonts.titleM};
             
             color: ${props => props.theme["base-title"]};
+            
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         > span {
@@ -40,12 +43,17 @@ export const PostCardContainer = styled.div`
             color: ${props => props.theme["base-span"]};
         }
     }
-    
+
     > p {
+        height: 128px;
+
         margin-top: 1.25rem;
 
         ${mixins.fonts.textM};
-        
+
         color: ${props => props.theme["base-text"]};
+
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 `
